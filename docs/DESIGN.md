@@ -1,4 +1,4 @@
-# Readiness Kit — design note
+# Readiness Kit design note
 
 *v0.1 · frozen 10 October 2026 · Rainkernel Technologies Private Limited*
 
@@ -14,11 +14,11 @@ integrator can build on it. One command-line tool, `rk`, with seven working comm
 
 | Command | What it measures | Artefact |
 | --- | --- | --- |
-| `rk split` | — (makes the held-out split) | `split.json` |
+| `rk split` | (makes the held-out split) | `split.json` |
 | `rk eval` | Pass rate on an evaluation set, held-out and dev, by category | `runs/eval.json` |
 | `rk attack` | Which OWASP ASI01–ASI10 attack cases the agent followed | `runs/attack.json` |
 | `rk scan` | Findings from the open scanners on the agent's tools and configuration | `runs/scan.json` (+ raw outputs) |
-| `rk bom` | What the agent is made of — models, prompts, tools, MCP servers, skills, data — as CycloneDX 1.6 | `runs/bom.cdx.json`, `runs/bom.json` |
+| `rk bom` | What the agent is made of (models, prompts, tools, MCP servers, skills, data) as CycloneDX 1.6 | `runs/bom.cdx.json`, `runs/bom.json` |
 | `rk cost` | Cost per completed task from traces; projection to volume | `runs/cost.json` |
 | `rk score` | The eight-area scorecard from everything above plus the declared assessment | `runs/scorecard.json`, `.md` |
 
@@ -29,7 +29,7 @@ templates. `rk validate` checks files against the schemas.
 
 The line is drawn by a single rule: **the Kit shows an engineer the problem; the Gate is what their company
 buys to solve it on every release.** Anything that *measures* is in the Kit. Anything that *produces the
-deliverable a buyer pays for* — the full attack corpus, the generated report, the gate that blocks a release —
+deliverable a buyer pays for* (the full attack corpus, the generated report, the gate that blocks a release)
 is in the Gate.
 
 | In the Kit (Apache-2.0) | In the Gate (licensed) |

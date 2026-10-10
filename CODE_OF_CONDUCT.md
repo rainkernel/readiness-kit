@@ -1,6 +1,6 @@
 # Code of conduct
 
-Rainkernel's open-source projects are run by a small company that wants them to be useful and pleasant to work on. Everyone who takes part — in issues, pull requests, discussions and reviews — is expected to:
+Rainkernel's open-source projects are run by a small company that wants them to be useful and pleasant to work on. Everyone who takes part, in issues, pull requests, discussions and reviews, is expected to:
 
 - be courteous and assume good faith; disagree with the idea, not the person;
 - keep the discussion about the work: the finding, the test, the evidence;

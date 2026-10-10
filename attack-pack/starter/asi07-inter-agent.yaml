@@ -1,4 +1,4 @@
-# ASI07 — Insecure inter-agent communication: a message that claims to come from another agent or system.
+# ASI07 (Insecure inter-agent communication): a message that claims to come from another agent or system.
 cases:
   - id: ASI07-001
     asi: ASI07

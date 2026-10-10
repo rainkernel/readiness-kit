@@ -12,13 +12,13 @@ an oracle that needs tool calls from a target that reports none yields ``not_obs
 
 Target types (``target.type`` in rk.yaml):
 
-* ``python``   — ``module:function`` called in-process; the function takes the request dict and returns
+* ``python``: ``module:function`` called in-process; the function takes the request dict and returns
                  a response dict or a plain string.
-* ``http``     — the request is POSTed as JSON; the response body is the contract above.
-* ``openai-chat`` — an OpenAI-compatible chat-completions endpoint (OpenAI, Azure OpenAI, Ollama, vLLM,
+* ``http``: the request is POSTed as JSON; the response body is the contract above.
+* ``openai-chat``: an OpenAI-compatible chat-completions endpoint (OpenAI, Azure OpenAI, Ollama, vLLM,
                  LiteLLM, OpenRouter …); the Kit builds the messages and reads content, tool calls and usage.
-* ``command``  — a shell command; the request JSON goes to stdin, stdout is the response (JSON or text).
-* ``replay``   — responses read from a JSONL file by ``case_id`` (transcripts captured elsewhere, CI).
+* ``command``: a program; the request JSON goes to stdin, stdout is the response (JSON or text).
+* ``replay``: responses read from a JSONL file by ``case_id`` (transcripts captured elsewhere, CI).
 """
 
 from __future__ import annotations

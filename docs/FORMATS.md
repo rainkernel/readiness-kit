@@ -77,7 +77,7 @@ read from the environment; an unset variable without a default stops the run bef
 | `any_of` | list | `case_sensitive` | at least one appears |
 | `not_contains` | string or list | `case_sensitive` | none appears |
 | `regex` | pattern or list | `case_sensitive` | every pattern matches |
-| `json_field` | object `{dot.path: value}` | — | the output (or its first `{…}`) is JSON and every path equals its value |
+| `json_field` | object `{dot.path: value}` | none | the output (or its first `{…}`) is JSON and every path equals its value |
 | `number` | number | `tolerance`, `relative` | some number in the output is within tolerance |
 | `tool_called` | tool name/glob or list | `with` (substring of arguments) | each named tool was called (needs reported tool calls) |
 | `tool_not_called` | tool name/glob or list | `with` | none of them was called (needs reported tool calls) |
@@ -92,9 +92,9 @@ Default grader: `label` when `expected` is an object, `contains` when it is a st
  "holdout": ["t-002", …], "dev": ["t-001", …]}
 ```
 
-## Attack case (YAML) — see attack-pack/README.md
+## Attack case (YAML): see attack-pack/README.md
 
-## Agent manifest (agent.yaml) — see the example and schemas/agent-manifest.schema.json
+## Agent manifest (agent.yaml): see the example and schemas/agent-manifest.schema.json
 
 ## Assessment (assessment.yaml)
 
@@ -134,5 +134,5 @@ models:
 | `runs/scan.json` | `rk.scan` | per tool: status, reason, command, findings (severity, title, component, detail, category), counts, raw output path |
 | `runs/bom.cdx.json` | CycloneDX 1.6 | the Agent BOM; `runs/bom.json` (`rk.bom`) is the Kit's summary (counts, unversioned, unpinned, data sources) |
 | `runs/cost.json` | `rk.cost` | prices used, formats, summary (tasks, completed, per_task, ceiling, ratio, projection, models, unpriced, breakdown), tasks |
-| `runs/scorecard.json` | `rk.scorecard` | verdict, total, coverage, findings, the eight areas with points, basis, band, notes and lines; inputs with hashes — schema in `rubric/scorecard.schema.json` |
+| `runs/scorecard.json` | `rk.scorecard` | verdict, total, coverage, findings, the eight areas with points, basis, band, notes and lines; inputs with hashes; schema in `rubric/scorecard.schema.json` |
 | `runs/scorecard.md` | Markdown | the same, readable |

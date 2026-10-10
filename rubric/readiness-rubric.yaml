@@ -1,4 +1,4 @@
-# The Rainkernel readiness rubric — the eight areas of the Evidence Report's scorecard (section 7 of the
+# The Rainkernel readiness rubric: the eight areas of the Evidence Report's scorecard (section 7 of the
 # sample report at https://rainkernel.com/products/agent-readiness-gate/sample-report).
 #
 # Weights sum to 100. `rk score` fills each area from the artefacts in the runs folder (measured) and from
@@ -18,7 +18,7 @@ areas:
   - id: evaluation_set
     name: Evaluation set
     weight: 16
-    question: Is the agent judged on cases it was not tuned on — real ones, on every change?
+    question: Is the agent judged on cases it was not tuned on, real ones, on every change?
     measured_by: [eval]
     declared_by: [evaluation_set.source, evaluation_set.gated_in_ci]
     scoring:

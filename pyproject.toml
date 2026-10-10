@@ -85,7 +85,7 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
 ignore = ["E501", "RUF012"]
-allowed-confusables = ["×", "–", "—", "·"]
+allowed-confusables = ["×", "–", "·"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

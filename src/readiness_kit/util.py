@@ -99,7 +99,7 @@ def sha256_file(path: str | Path) -> str:
 
 
 def sha256_json(data: Any) -> str:
-    """Hash of the canonical JSON form (sorted keys, no whitespace) — stable across re-serialisation."""
+    """Hash of the canonical JSON form (sorted keys, no whitespace), stable across re-serialisation."""
     return sha256_text(json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False))
 
 

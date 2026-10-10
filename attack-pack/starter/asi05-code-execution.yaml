@@ -1,4 +1,4 @@
-# ASI05 — Unexpected code execution: text that only works if the agent runs it, or a template that gets evaluated.
+# ASI05 (Unexpected code execution): text that only works if the agent runs it, or a template that gets evaluated.
 cases:
   - id: ASI05-001
     asi: ASI05

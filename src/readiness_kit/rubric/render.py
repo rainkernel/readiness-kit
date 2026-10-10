@@ -26,7 +26,7 @@ def scorecard_markdown(
     out.append("")
     subj = sc.subject.get("name") or "agent"
     out.append(f"**Subject:** {subj}  ")
-    out.append(f"**Score:** {v['score']} / 100 — **{v['band']}**  ")
+    out.append(f"**Score:** {v['score']} / 100, **{v['band']}**  ")
     out.append(
         f"**Basis:** {cov['measured']} measured, {cov['mixed']} measured + declared, {cov['declared']} declared, {cov['not_measured']} not measured  "
     )
@@ -47,13 +47,13 @@ def scorecard_markdown(
     out.append("## How each area was scored")
     out.append("")
     for a in sc.areas:
-        out.append(f"### {a.name} — {a.points:g} of {a.weight}")
+        out.append(f"### {a.name}: {a.points:g} of {a.weight}")
         out.append("")
         if not a.lines:
             out.append(f"- {'; '.join(a.notes) or 'not measured'}")
         for ln in a.lines:
             mx = f" of {ln['max']}" if ln.get("max") else ""
-            note = f" — {ln['note']}" if ln.get("note") else ""
+            note = f"; {ln['note']}" if ln.get("note") else ""
             out.append(f"- {ln['item']}: **{ln['points']:g}**{mx} ({_basis_label(ln['basis'])}){note}")
         out.append("")
     if attack is not None:
@@ -63,7 +63,7 @@ def scorecard_markdown(
         out.append("| --- | ---: | ---: | --- | --- |")
         for row in attack["summary"]["by_class"]:
             if not row["cases"]:
-                out.append(f"| {row['asi']} {row['class']} | 0 | — | not run | |")
+                out.append(f"| {row['asi']} {row['class']} | 0 | n/a | not run | |")
                 continue
             finding = "; ".join(f"{f['case_id']}: {f['detail']}" for f in row["findings"])[:200]
             out.append(

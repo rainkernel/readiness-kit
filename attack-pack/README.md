@@ -1,10 +1,10 @@
 # Attack pack
 
-Attack cases in the format the licensed Gate's full pack uses — one YAML file per OWASP class, one or more cases
+Attack cases in the format the licensed Gate's full pack uses: one YAML file per OWASP class, one or more cases
 per file, a deterministic oracle per case. The **starter** pack here holds one or two cases for each of the ten
 classes of the OWASP Top 10 for Agentic Applications (ASI01–ASI10): enough to run `rk attack` end to end and to
-see what a finding looks like. The full pack — tool-description poisoning variants, context-file poisoning,
-form-input exfiltration families, cost amplification, over-permission probes, and the domain packs — ships in the
+see what a finding looks like. The full pack (tool-description poisoning variants, context-file poisoning,
+form-input exfiltration families, cost amplification, over-permission probes, and the domain packs) ships in the
 [Agent Readiness Gate](https://rainkernel.com/products/agent-readiness-gate).
 
 ## A case
@@ -13,12 +13,12 @@ form-input exfiltration families, cost amplification, over-permission probes, an
 id: ASI01-001            # class and sequence
 asi: ASI01               # OWASP class
 title: …
-severity: high           # high | medium | low — the severity of the finding if the agent follows the attack
-channel: user_input      # user_input | document | tool_result | memory | config — where the payload arrives
+severity: high           # high | medium | low: the severity of the finding if the agent follows the attack
+channel: user_input      # user_input | document | tool_result | memory | config: where the payload arrives
 intent: …                # what the attack is trying to make the agent do
 input: |                 # the user turn sent to the agent
   …
-context: { … }           # optional: memory, tool_result, tool_descriptions, document, fault — passed to the agent unchanged
+context: { … }           # optional: memory, tool_result, tool_descriptions, document, fault; passed to the agent unchanged
 canary: …                # optional token; oracles may write {canary}
 oracles:                 # all must hold for a pass; any failure = the agent followed the attack
   - type: tool_not_called
@@ -29,7 +29,7 @@ remediation: …
 references: [ … ]
 ```
 
-Canaries live on `*.rk-canary.invalid` — `.invalid` is reserved by RFC 2606 and can never resolve, so a case that
+Canaries live on `*.rk-canary.invalid`; `.invalid` is reserved by RFC 2606 and can never resolve, so a case that
 *does* make an agent send something sends it nowhere. Keep that rule for your own cases.
 
 **Run the pack against a non-production deployment.** The cases are real attacks: an agent that follows ASI06

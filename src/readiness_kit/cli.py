@@ -16,6 +16,7 @@ rk version
 from __future__ import annotations
 
 import argparse
+import contextlib
 import shutil
 import sys
 from pathlib import Path
@@ -79,7 +80,7 @@ def cmd_init(args: argparse.Namespace) -> int:
         "Next: set target: in rk.yaml to your agent (python | http | openai-chat | command), list what it is made of in agent.yaml,"
     )
     say(
-        "answer assessment.yaml, then run `rk split`, `rk eval`, `rk attack`, `rk bom`, `rk cost`, `rk score` — or `rk demo` to see it on the example first."
+        "answer assessment.yaml, then run `rk split`, `rk eval`, `rk attack`, `rk bom`, `rk cost`, `rk score`, or `rk demo` to see it on the example first."
     )
     return EXIT_OK
 
@@ -158,7 +159,7 @@ def cmd_eval(args: argparse.Namespace) -> int:
     )
     if s["dev"]:
         say(
-            f"       dev pass rate {s['dev']['pass_rate']:.2f} ({s['dev']['passed']}/{s['dev']['graded']}) — tuning side, not the headline"
+            f"       dev pass rate {s['dev']['pass_rate']:.2f} ({s['dev']['passed']}/{s['dev']['graded']}) (tuning side, not the headline)"
         )
     for row in s["by_category"]:
         say(
@@ -192,7 +193,7 @@ def cmd_attack(args: argparse.Namespace) -> int:
         for f in row["findings"]:
             say(f"         ! {f['case_id']} {f['title']}: {f['detail'][:110]}")
     say(
-        f"result {s['followed']} followed, {s['passed']} passed, {s['not_observable']} not observable, {s['errors']} errors — {s['high']} high, {s['medium']} medium, {s['low']} low"
+        f"result {s['followed']} followed, {s['passed']} passed, {s['not_observable']} not observable, {s['errors']} errors; {s['high']} high, {s['medium']} medium, {s['low']} low"
     )
     say(f"wrote  {out}")
     return EXIT_FINDINGS if (s["high"] and args.fail_on_high) else EXIT_OK
@@ -320,7 +321,7 @@ def cmd_cost(args: argparse.Namespace) -> int:
         )
     if s["unpriced_models"]:
         say(
-            f"       ! no price for {', '.join(s['unpriced_models'])} ({s['unpriced_tokens_share']:.0%} of tokens) — add them to the price table"
+            f"       ! no price for {', '.join(s['unpriced_models'])} ({s['unpriced_tokens_share']:.0%} of tokens) ; add them to the price table"
         )
     if not s["has_usage"]:
         say(
@@ -349,7 +350,7 @@ def cmd_score(args: argparse.Namespace) -> int:
     out = Path(args.out) if args.out else runs / "scorecard.json"
     write_json(out, sc.to_dict())
     md = Path(args.md) if args.md else runs / "scorecard.md"
-    write_text_file(md, scorecard_markdown(sc, attack=ev.attack, title=f"Readiness scorecard — {cfg.name}"))
+    write_text_file(md, scorecard_markdown(sc, attack=ev.attack, title=f"Readiness scorecard: {cfg.name}"))
     say(scorecard_text(sc))
     say("")
     say(f"wrote  {out} and {md}")
@@ -380,7 +381,7 @@ def cmd_demo(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="rk", description="Readiness Kit — the open-source frame under the Agent Readiness Gate."
+        prog="rk", description="Readiness Kit: the open-source frame under the Agent Readiness Gate."
     )
     p.add_argument("--config", "-c", help="path to rk.yaml (default: ./rk.yaml)")
     p.add_argument("--runs", help="runs folder for artefacts (default: runs_dir in rk.yaml, or ./runs)")
@@ -479,7 +480,21 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
+def _tolerant_console() -> None:
+    """Keep the CLI running on consoles that cannot encode every character it prints.
+
+    The output uses a few non-ASCII glyphs (arrows, multiplication sign). On a Windows console with a legacy
+    code page they would raise UnicodeEncodeError; replacing them is better than a crash.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            with contextlib.suppress(ValueError, OSError):
+                reconfigure(errors="replace")
+
+
 def main(argv: list[str] | None = None) -> int:
+    _tolerant_console()
     parser = build_parser()
     args = parser.parse_args(argv)
     try:

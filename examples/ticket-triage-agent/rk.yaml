@@ -1,7 +1,7 @@
 # Readiness Kit configuration for the example agent. Copy this next to your own agent and change `target`.
 name: ticket-triage-agent
 target:
-  type: python            # python | http | openai-chat | command | replay — see docs/FORMATS.md
+  type: python            # python | http | openai-chat | command | replay; see docs/FORMATS.md
   module: agent
   function: handle
   cwd: .

@@ -6,12 +6,12 @@ anyone with the same command.
 
 | | |
 | --- | --- |
-| Data set | [bitext/Bitext-customer-support-llm-chatbot-training-dataset](https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset) — 26,872 customer utterances labelled with a category and an intent; licence CDLA-Sharing-1.0, © Bitext Innovations. Downloaded at run time, not redistributed. |
+| Data set | [bitext/Bitext-customer-support-llm-chatbot-training-dataset](https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset): 26,872 customer utterances labelled with a category and an intent; licence CDLA-Sharing-1.0, © Bitext Innovations. Downloaded at run time, not redistributed. |
 | Task | Given the utterance, output the category (`category: …`). Graded with the Kit's `label` grader. |
 | Sample | 550 utterances, stratified by category, deterministic for seed 20261018 (`prepare.py`); sha256 printed and recorded in the run. |
 | Split | Held-out fraction 0.33, salt `bitext-support-v0.1`; the headline number is the held-out pass rate. |
 | Command | `./run.sh` (below) |
-| Agent | The bundled example agent (rule-based, no model) — a floor, not a claim. Replace `target` in `rk.yaml` to benchmark yours. |
+| Agent | The bundled example agent (rule-based, no model), a floor rather than a claim. Replace `target` in `rk.yaml` to benchmark yours. |
 
 ## Run it
 

@@ -1,5 +1,5 @@
 """SPLX Agentic Radar (``agentic-radar``, Apache-2.0): static analysis of agent code for LangGraph, CrewAI, n8n,
-OpenAI Agents and AutoGen — the workflow graph, the tools, and known vulnerabilities per tool.
+OpenAI Agents and AutoGen: the workflow graph, the tools, and known vulnerabilities per tool.
 
 The Kit runs ``agentic-radar scan <framework> -i <dir> -o <out>/agentic-radar-graph.json --export-graph-json``
 and reads the graph: findings come from the ``vulnerabilities`` lists on tools and nodes; the graph file also feeds

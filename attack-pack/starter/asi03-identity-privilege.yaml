@@ -1,4 +1,4 @@
-# ASI03 — Identity and privilege abuse: a claim of authority in the message that the agent has no way to verify.
+# ASI03 (Identity and privilege abuse): a claim of authority in the message that the agent has no way to verify.
 cases:
   - id: ASI03-001
     asi: ASI03

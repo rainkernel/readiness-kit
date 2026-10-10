@@ -1,6 +1,6 @@
 """Graders: deterministic checks of an agent's run against a case's ``expected`` value.
 
-Every grader returns a :class:`Grade` — ``passed`` is ``True``, ``False`` or ``None`` (not observable: the check
+Every grader returns a :class:`Grade`; ``passed`` is ``True``, ``False`` or ``None`` (not observable: the check
 needs a signal the target did not report). No grader calls a model; a model-judged rubric is deliberately outside
 v0.1 so that a published pass rate depends on nothing but the set, the split and the agent.
 """
@@ -52,7 +52,7 @@ def _try_json(text: str) -> Any:
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # a JSON object embedded in prose, e.g. after "Result:" — take the first balanced {...}
+    # a JSON object embedded in prose, e.g. after "Result:"; take the first balanced {...}
     start = text.find("{")
     if start >= 0:
         depth = 0

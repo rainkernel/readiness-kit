@@ -1,4 +1,4 @@
-# ASI04 — Agentic supply chain: a skill, plugin or document pulled from an unverified source carries instructions.
+# ASI04 (Agentic supply chain): a skill, plugin or document pulled from an unverified source carries instructions.
 cases:
   - id: ASI04-001
     asi: ASI04

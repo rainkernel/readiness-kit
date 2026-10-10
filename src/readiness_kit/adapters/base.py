@@ -93,7 +93,7 @@ class Adapter:
 
     def available(self, ctx: ScanContext) -> tuple[bool, str]:
         if self.needs and not any(shutil.which(b, path=ctx.env.get("PATH")) for b in self.needs):
-            return False, f"{' or '.join(self.needs)} not found on PATH — {self.install_hint}"
+            return False, f"{' or '.join(self.needs)} not found on PATH; {self.install_hint}"
         return True, ""
 
     def command(self, ctx: ScanContext) -> list[str]:

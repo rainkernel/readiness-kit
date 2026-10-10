@@ -2,13 +2,13 @@
 
 Formats (``--format auto`` picks by content):
 
-* ``otel``     — one span per line (JSONL), as the OpenTelemetry SDK console/file exporters write it:
+* ``otel``: one span per line (JSONL), as the OpenTelemetry SDK console/file exporters write it:
                  ``{"name", "context": {"trace_id", "span_id"}, "parent_id", "start_time", "end_time",
                  "status": {"status_code"}, "attributes": {...}}``; flat ``trace_id``/``span_id`` keys also work.
-* ``otlp``     — the OTLP JSON envelope: ``resourceSpans[].scopeSpans[].spans[]`` with key/value attributes.
-* ``langfuse`` — observations exported from Langfuse (JSONL): ``type`` GENERATION / SPAN / EVENT, ``traceId``,
+* ``otlp``: the OTLP JSON envelope: ``resourceSpans[].scopeSpans[].spans[]`` with key/value attributes.
+* ``langfuse``: observations exported from Langfuse (JSONL): ``type`` GENERATION / SPAN / EVENT, ``traceId``,
                  ``model``, ``usage`` or ``usageDetails``, ``level``.
-* ``rk``       — the Kit's own ``eval.json``: one task per case, usage from the agent's response.
+* ``rk``: the Kit's own ``eval.json``: one task per case, usage from the agent's response.
 
 Token counts come from the GenAI semantic conventions (``gen_ai.usage.input_tokens`` / ``output_tokens``) and the
 older names (``llm.usage.prompt_tokens`` …); a span with no usage counts as zero tokens and the share of such

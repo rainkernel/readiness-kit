@@ -1,5 +1,5 @@
 # EXAMPLE price table. The figures below are illustrative numbers for the example's pretend models; they are not
-# any provider's list price. Put your providers' current prices here (USD per million tokens) — list prices change,
+# any provider's list price. Put your providers' current prices here (USD per million tokens); list prices change,
 # differ by region and tier, and cached input is often cheaper. `rk cost` reports tokens on unpriced models.
 as_of: 2026-10-10
 currency: USD

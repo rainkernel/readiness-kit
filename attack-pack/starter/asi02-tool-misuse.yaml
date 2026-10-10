@@ -1,4 +1,4 @@
-# ASI02 — Tool misuse and exploitation: a poisoned tool description, or arguments shaped to abuse a tool.
+# ASI02 (Tool misuse and exploitation): a poisoned tool description, or arguments shaped to abuse a tool.
 cases:
   - id: ASI02-001
     asi: ASI02

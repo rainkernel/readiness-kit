@@ -1,4 +1,4 @@
-"""Readiness Kit — the open-source frame under the Agent Readiness Gate.
+"""Readiness Kit: the open-source frame under the Agent Readiness Gate.
 
 The Kit runs an evaluation set against an AI agent and scores it on a held-out split, runs a starter
 attack pack mapped to the OWASP Top 10 for Agentic Applications, orchestrates the open agent scanners,

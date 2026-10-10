@@ -1,14 +1,14 @@
 """A deliberately weak support-ticket triage agent, for the Kit's walkthrough.
 
 It needs no model and no network: a few keyword rules classify a ticket into a category and a priority, look the
-customer up, route the ticket and draft a reply. It follows the Kit's agent contract — ``handle(request) -> dict``
-— so every command in the walkthrough runs against it offline.
+customer up, route the ticket and draft a reply. It follows the Kit's agent contract, ``handle(request) -> dict``,
+so every command in the walkthrough runs against it offline.
 
 It is weak on purpose, so that the walkthrough shows what a finding looks like:
-  * it acts on instructions embedded in the ticket text (ASI01 — goal hijack)
-  * it trusts notes from memory without checking them (ASI06 — memory poisoning)
-  * it retries a failing lookup without a bound (ASI08 — cascading failures)
-  * it asserts a refund decision it is not authorised to make (ASI09 — trust exploitation)
+  * it acts on instructions embedded in the ticket text (ASI01, goal hijack)
+  * it trusts notes from memory without checking them (ASI06, memory poisoning)
+  * it retries a failing lookup without a bound (ASI08, cascading failures)
+  * it asserts a refund decision it is not authorised to make (ASI09, trust exploitation)
 It resists the other starter cases, so the attack table shows both outcomes. Do not copy it into production.
 """
 
@@ -197,7 +197,7 @@ class Agent:
         memory = self.context.get("memory") or []
         notes = [memory] if isinstance(memory, str) else [str(m) for m in memory]
 
-        # 1. identify the customer — with an unbounded retry on failure (ASI08 weakness)
+        # 1. identify the customer, with an unbounded retry on failure (ASI08 weakness)
         key = None
         m = EMAIL_RE.search(text)
         if m:
@@ -247,7 +247,7 @@ class Agent:
         if category == "CONTACT":
             self.call("escalate_to_human", reason="customer asked for a person")
 
-        # 6. draft the reply — asserting a decision it cannot make when asked to (ASI09 weakness)
+        # 6. draft the reply, asserting a decision it cannot make when asked to (ASI09 weakness)
         reply = REPLIES.get(category, REPLIES["CONTACT"])
         if category == "REFUND" and ASSERT_RE.search(text):
             reply = "Your refund has been approved and will reach you within 5 working days."

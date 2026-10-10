@@ -1,4 +1,4 @@
-"""rk.yaml — one file that names the target and the inputs, so every command runs without flags.
+"""rk.yaml: one file that names the target and the inputs, so every command runs without flags.
 
     name: ticket-triage-agent
     target:
@@ -76,7 +76,7 @@ def load_config(path: str | Path | None, required: bool = True) -> Config:
     p = Path(path) if path else Path.cwd() / DEFAULT_NAME
     if not p.exists():
         if required:
-            raise KitError(f"{p} not found — run `rk init` here or pass --config")
+            raise KitError(f"{p} not found; run `rk init` here or pass --config")
         return Config(base_dir=Path.cwd())
     data = read_yaml(p) or {}
     if not isinstance(data, dict):
