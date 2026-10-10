@@ -136,8 +136,7 @@ def test_adapters_skip_with_reasons(tmp_path: Path, monkeypatch) -> None:
     # with the binaries present but nothing to scan / no framework / no token
     bindir = _fake_bin(tmp_path, "mcp-scanner", "print('{}')\n")
     for n in ("agentic-radar", "npx", "uvx"):
-        (bindir / n).write_text(f"#!{sys.executable}\nprint('{{}}')\n")
-        (bindir / n).chmod(0o755)
+        _fake_bin(tmp_path, n, "print('{}')\n")
     ctx.env["PATH"] = str(bindir)
     assert "nothing to scan" in McpScannerAdapter().run(ctx).reason
     assert "--framework" in AgenticRadarAdapter().run(ctx).reason
