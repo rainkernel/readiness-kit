@@ -350,10 +350,16 @@ class CommandTarget:
         timeout: float = 300.0,
         env: dict[str, str] | None = None,
     ) -> None:
-        self.argv = shlex.split(command) if isinstance(command, str) else list(command)
+        # On Windows a command string goes to CreateProcess as it is (POSIX shlex rules would eat the
+        # backslashes in paths); elsewhere it is split the way a shell would.
+        if isinstance(command, str):
+            self.argv: str | list[str] = command if os.name == "nt" else shlex.split(command)
+        else:
+            self.argv = list(command)
         self.cwd = cwd
         self.timeout = timeout
-        self.env = {**os.environ, **(env or {})}
+        # PYTHONUTF8 makes a Python child read the request and write its answer as UTF-8 on every platform.
+        self.env = {**os.environ, "PYTHONUTF8": "1", **(env or {})}
 
     def run(self, request: Request) -> Run:
         def call(r: Request) -> Any:
@@ -361,7 +367,8 @@ class CommandTarget:
                 self.argv,
                 input=json.dumps(r.to_dict()),
                 capture_output=True,
-                text=True,
+                encoding="utf-8",
+                errors="replace",
                 cwd=self.cwd,
                 env=self.env,
                 timeout=self.timeout,

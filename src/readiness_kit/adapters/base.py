@@ -111,11 +111,16 @@ class Adapter:
         except SkipScan as e:
             return ScanResult(self.name, "skipped", str(e))
         ctx.out_dir.mkdir(parents=True, exist_ok=True)
+        # Resolve the executable on the context's PATH: on Windows the tools are .cmd or .exe shims that
+        # CreateProcess does not find from a bare name. The reported command keeps the logical form.
+        exe = shutil.which(cmd[0], path=ctx.env.get("PATH")) if cmd else None
+        argv = [exe, *cmd[1:]] if exe else cmd
         try:
             proc = subprocess.run(
-                cmd,
+                argv,
                 capture_output=True,
-                text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=ctx.timeout,
                 env=ctx.env,
                 cwd=str(ctx.path),

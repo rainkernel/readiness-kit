@@ -94,10 +94,16 @@ def _ctx(tmp_path: Path, **kw) -> ScanContext:
 
 
 def _fake_bin(tmp_path: Path, name: str, body: str) -> Path:
+    """A fake scanner on PATH: a shebang script on POSIX, a .cmd wrapper around a .py file on Windows."""
     d = tmp_path / "bin"
     d.mkdir(exist_ok=True)
+    if os.name == "nt":
+        script = d / f"{name}.py"
+        script.write_text(body, encoding="utf-8")
+        (d / f"{name}.cmd").write_text(f'@"{sys.executable}" "{script}" %*\r\n', encoding="utf-8")
+        return d
     p = d / name
-    p.write_text(f"#!{sys.executable}\n{body}")
+    p.write_text(f"#!{sys.executable}\n{body}", encoding="utf-8")
     p.chmod(p.stat().st_mode | stat.S_IEXEC)
     return d
 

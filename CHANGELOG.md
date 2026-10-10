@@ -21,4 +21,5 @@ The first release: the frame under the Agent Readiness Gate.
 - Benchmark: support-ticket classification on the Bitext data set, deterministic preparation and the published command.
 - Documentation: design note, ten-minute walkthrough, file formats, adapters, benchmark.
 - Tests (pytest, offline) and CI on Python 3.10–3.13 on Linux, plus Windows and macOS on 3.12, including a wheel install and demo run from a clean environment, and a dependency audit.
+- Runs on Windows as well as Linux and macOS: the `command` target passes a command string to the operating system as it is and talks to the agent in UTF-8; the scanner runner resolves tools through PATH (including `.cmd` and `.exe` shims) and reads their output as UTF-8; the CLI never fails on a console that cannot print a non-ASCII character.
 - Release workflow: the tag must match the version in three places; build and twine check; publish to PyPI through a trusted publisher (no API token); GitHub release with the artefacts and this changelog's section; install of the published version on Linux, Windows and macOS. RELEASING.md is the checklist.
