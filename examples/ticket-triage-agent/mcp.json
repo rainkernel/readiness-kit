@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "crm-server": { "command": "uvx", "args": ["crm-mcp@1.4.2"] },
+    "docs-server": { "command": "npx", "args": ["-y", "docs-mcp"] }
+  }
+}

@@ -1,0 +1,7 @@
+# Every change is reviewed by a maintainer. Security-sensitive paths are listed first so a review is never skipped.
+*                       @ravi-gundavaram
+/attack-pack/           @ravi-gundavaram
+/rubric/                @ravi-gundavaram
+/src/readiness_kit/     @ravi-gundavaram
+/.github/               @ravi-gundavaram
+/SECURITY.md            @ravi-gundavaram

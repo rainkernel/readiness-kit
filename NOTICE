@@ -1,0 +1,10 @@
+Readiness Kit
+Copyright 2026 Rainkernel Technologies Private Limited
+
+This product includes software developed at Rainkernel Technologies Private Limited (https://rainkernel.com).
+Licensed under the Apache License, Version 2.0 — see LICENSE.
+
+The Kit orchestrates, and does not redistribute, the following open scanners, each under its own licence:
+snyk-agent-scan (Snyk), mcp-scanner (Cisco AI Defense, Apache-2.0), agentic-radar (SPLX, Apache-2.0),
+promptfoo (MIT). The starter attack pack maps to the OWASP Top 10 for Agentic Applications; the Agent BOM uses
+the CycloneDX 1.6 specification (OWASP CycloneDX, Apache-2.0).

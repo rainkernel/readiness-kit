@@ -1,0 +1,24 @@
+name: Attack case
+description: Propose a new starter case, or report a false positive or negative in an existing one
+labels: [attack-pack]
+body:
+  - type: dropdown
+    id: class
+    attributes:
+      label: OWASP class
+      options: [ASI01, ASI02, ASI03, ASI04, ASI05, ASI06, ASI07, ASI08, ASI09, ASI10]
+    validations:
+      required: true
+  - type: textarea
+    id: case
+    attributes:
+      label: The case, in the pack's YAML format (or the id of the existing case)
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why the oracle is sound (what a lucky pass would look like, and why it cannot happen)
+    validations:
+      required: true

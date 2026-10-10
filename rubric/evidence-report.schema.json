@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rainkernel.com/schemas/readiness-kit/evidence-report.schema.json",
+  "title": "Readiness Evidence Report",
+  "description": "The structure of the Evidence Report the Agent Readiness Gate generates (the generator is part of the licensed Gate; the Kit publishes the schema so buyers know the shape and integrators can consume it). The worked example: https://rainkernel.com/products/agent-readiness-gate/sample-report",
+  "type": "object",
+  "required": ["id", "title", "subject", "period", "verdict", "summary", "scope", "reliability", "security", "cost", "permissions", "bom", "scorecard", "remediation", "controls", "limitations", "signoff"],
+  "properties": {
+    "id": { "type": "string", "description": "e.g. RK-GATE-2026-0042" },
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "version": { "type": "string", "description": "Report version and date" },
+    "subject": {
+      "type": "object",
+      "required": ["organisation", "agent"],
+      "properties": {
+        "organisation": { "type": "string" },
+        "agent": { "type": "string" },
+        "agent_version": { "type": "string" },
+        "owner": { "type": "string" }
+      }
+    },
+    "period": { "type": "string", "description": "The Gate run window" },
+    "environment": { "type": "string", "description": "Where the Gate ran; data residency statement" },
+    "verdict": {
+      "type": "object",
+      "required": ["score", "band", "line"],
+      "properties": { "score": { "type": "integer", "minimum": 0, "maximum": 100 }, "band": { "type": "string", "enum": ["READY", "CONDITIONAL", "NOT_READY"] }, "line": { "type": "string" } }
+    },
+    "readers": { "type": "array", "items": { "type": "object", "required": ["audience", "sections"], "properties": { "audience": { "type": "string" }, "sections": { "type": "string" } } } },
+    "summary": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "scope": {
+      "type": "object",
+      "required": ["description", "stack", "data", "engines"],
+      "properties": {
+        "description": { "type": "string" },
+        "stack": { "type": "string" },
+        "data": { "type": "string" },
+        "engines": { "type": "string" },
+        "days": { "type": "array", "items": { "type": "object", "required": ["when", "what"], "properties": { "when": { "type": "string" }, "what": { "type": "string" } } } }
+      }
+    },
+    "reliability": {
+      "type": "object",
+      "required": ["pass_rate", "target", "cases"],
+      "properties": {
+        "pass_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "target": { "type": "number", "minimum": 0, "maximum": 1 },
+        "cases": { "type": "integer" },
+        "holdout": { "type": "integer" },
+        "by_category": { "type": "array", "items": { "type": "object", "required": ["category", "cases", "pass_rate"], "properties": { "category": { "type": "string" }, "cases": { "type": "integer" }, "pass_rate": { "type": "number" }, "note": { "type": "string" } } } },
+        "regressions": { "type": "string" },
+        "notes": { "type": "string" },
+        "evalset_sha256": { "type": "string" },
+        "split_salt": { "type": "string" }
+      }
+    },
+    "security": {
+      "type": "object",
+      "required": ["classes"],
+      "properties": {
+        "intro": { "type": "string" },
+        "classes": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "required": ["asi", "class", "cases", "followed", "outcome"],
+            "properties": {
+              "asi": { "type": "string", "enum": ["ASI01", "ASI02", "ASI03", "ASI04", "ASI05", "ASI06", "ASI07", "ASI08", "ASI09", "ASI10"] },
+              "class": { "type": "string" },
+              "cases": { "type": "integer" },
+              "followed": { "type": "integer" },
+              "outcome": { "type": "string", "enum": ["high", "medium", "low", "pass", "n/a", "not_run"] },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "narrative": { "type": "string", "description": "The worst finding explained with its fix" }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "required": ["per_task", "currency"],
+      "properties": {
+        "per_task": { "type": "number" },
+        "ceiling": { "type": "number" },
+        "currency": { "type": "string" },
+        "volume": { "type": "string" },
+        "monthly": { "type": "string" },
+        "breakdown": { "type": "array", "items": { "type": "object", "required": ["bucket", "per_task"], "properties": { "bucket": { "type": "string" }, "per_task": { "type": "number" } } } },
+        "fixes": { "type": "string" }
+      }
+    },
+    "permissions": { "type": "array", "items": { "type": "object", "required": ["finding", "severity", "fix"], "properties": { "finding": { "type": "string" }, "severity": { "type": "string", "enum": ["high", "medium", "low"] }, "fix": { "type": "string" } } } },
+    "bom": {
+      "type": "object",
+      "required": ["components"],
+      "properties": {
+        "intro": { "type": "string" },
+        "components": { "type": "array", "items": { "type": "object", "required": ["kind", "name", "version", "status"], "properties": { "kind": { "type": "string" }, "name": { "type": "string" }, "version": { "type": "string" }, "status": { "type": "string" } } } },
+        "cyclonedx_path": { "type": "string" },
+        "serial": { "type": "string" }
+      }
+    },
+    "scorecard": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": { "type": "object", "required": ["area", "weight", "points"], "properties": { "area": { "type": "string" }, "weight": { "type": "integer" }, "points": { "type": "number" }, "note": { "type": "string" }, "basis": { "type": "string" } } }
+    },
+    "remediation": { "type": "array", "items": { "type": "object", "required": ["fix", "effort", "owner"], "properties": { "fix": { "type": "string" }, "effort": { "type": "string" }, "owner": { "type": "string" }, "classes": { "type": "array", "items": { "type": "string" } } } } },
+    "remediation_total": { "type": "string" },
+    "controls": { "type": "array", "items": { "type": "object", "required": ["framework", "clauses", "evidence"], "properties": { "framework": { "type": "string" }, "clauses": { "type": "string" }, "evidence": { "type": "string" } } } },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "signoff": { "type": "object", "required": ["prepared_by"], "properties": { "prepared_by": { "type": "string" }, "countersigned_by": { "type": "string" }, "date": { "type": "string" } } },
+    "kit": { "type": "object", "description": "Versions and hashes of the Kit artefacts the report was generated from", "properties": { "kit_version": { "type": "string" }, "inputs": { "type": "object" } } }
+  }
+}

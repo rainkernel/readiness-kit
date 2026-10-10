@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rainkernel.com/schemas/readiness-kit/scorecard.schema.json",
+  "title": "Readiness Kit scorecard (rk score output)",
+  "description": "The eight-area scorecard the Kit produces; the Evidence Report embeds the same areas in its section 7.",
+  "type": "object",
+  "required": ["kind", "kit_version", "created", "rubric", "verdict", "total", "coverage", "findings", "areas"],
+  "properties": {
+    "kind": { "const": "rk.scorecard" },
+    "kit_version": { "type": "string" },
+    "created": { "type": "string" },
+    "rubric": { "type": "object", "required": ["name", "version", "sha256"], "properties": { "name": { "type": "string" }, "version": { "type": "integer" }, "sha256": { "type": "string" } } },
+    "subject": { "type": "object" },
+    "verdict": {
+      "type": "object",
+      "required": ["score", "band", "line"],
+      "properties": { "score": { "type": "integer", "minimum": 0, "maximum": 100 }, "band": { "type": "string", "enum": ["READY", "CONDITIONAL", "NOT_READY"] }, "line": { "type": "string" } }
+    },
+    "total": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "coverage": { "type": "object", "properties": { "measured": { "type": "integer" }, "declared": { "type": "integer" }, "mixed": { "type": "integer" }, "not_measured": { "type": "integer" } } },
+    "findings": { "type": "object", "required": ["high", "medium", "low"], "properties": { "high": { "type": "integer" }, "medium": { "type": "integer" }, "low": { "type": "integer" } } },
+    "areas": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "weight", "points", "basis"],
+        "properties": {
+          "id": { "type": "string", "enum": ["evaluation_set", "guardrails", "cost_per_task", "observability", "data_access", "human_in_the_loop", "reliability", "compliance"] },
+          "name": { "type": "string" },
+          "weight": { "type": "integer" },
+          "points": { "type": "number", "minimum": 0 },
+          "basis": { "type": "string", "enum": ["measured", "declared", "mixed", "not_measured"] },
+          "band": { "type": "string" },
+          "notes": { "type": "array", "items": { "type": "string" } },
+          "lines": { "type": "array", "items": { "type": "object", "required": ["item", "points", "basis"] } }
+        }
+      }
+    },
+    "inputs": { "type": "object" }
+  }
+}

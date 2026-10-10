@@ -1,0 +1,28 @@
+# Readiness Kit configuration for the example agent. Copy this next to your own agent and change `target`.
+name: ticket-triage-agent
+target:
+  type: python            # python | http | openai-chat | command | replay — see docs/FORMATS.md
+  module: agent
+  function: handle
+  cwd: .
+  max_steps: 25           # passed to the agent as metadata.max_steps; the step oracles use it too
+eval:
+  set: evalset.jsonl
+  split: split.json
+  target_pass_rate: 0.90
+  concurrency: 1
+attack:
+  pack: starter           # the bundled starter pack; or a folder of your own cases in the same format
+cost:
+  traces: [traces.jsonl]  # OpenTelemetry JSONL, OTLP JSON, Langfuse JSONL, or runs/eval.json
+  prices: prices.yaml
+  ceiling_per_task: 0.01
+  volume_per_month: 50000
+bom:
+  manifest: agent.yaml
+  discover: .             # also picks up mcp.json, skills/*/SKILL.md and prompts/*.md here
+scan:
+  tools: [mcp-scanner, snyk-agent-scan, agentic-radar, promptfoo]
+  tools_json: mcp-tools.json   # a saved tools/list for an offline mcp-scanner run
+assessment: assessment.yaml
+runs_dir: runs

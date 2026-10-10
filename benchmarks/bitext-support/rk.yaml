@@ -1,0 +1,15 @@
+# Benchmark configuration: the example agent on the Bitext support set. To benchmark your own agent, change
+# `target` (docs/FORMATS.md) and keep everything else, so the number is comparable.
+name: bitext-support-benchmark
+target:
+  type: python
+  module: agent
+  function: handle
+  cwd: ../../examples/ticket-triage-agent
+  max_steps: 25
+eval:
+  set: data/evalset.jsonl
+  split: data/split.json
+  target_pass_rate: 0.90
+  concurrency: 4
+runs_dir: runs

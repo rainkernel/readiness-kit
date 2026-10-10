@@ -1,0 +1,73 @@
+{
+  "name": "app",
+  "nodes": [
+    {
+      "node_type": "basic",
+      "name": "triage",
+      "description": null,
+      "label": "triage",
+      "category": null,
+      "vulnerabilities": []
+    },
+    {
+      "node_type": "basic",
+      "name": "route",
+      "description": null,
+      "label": "route",
+      "category": null,
+      "vulnerabilities": []
+    },
+    {
+      "node_type": "basic",
+      "name": "START",
+      "description": null,
+      "label": "START",
+      "category": null,
+      "vulnerabilities": []
+    },
+    {
+      "node_type": "basic",
+      "name": "END",
+      "description": null,
+      "label": "END",
+      "category": null,
+      "vulnerabilities": []
+    }
+  ],
+  "edges": [
+    {
+      "start": "triage",
+      "end": "route",
+      "condition": null
+    },
+    {
+      "start": "route",
+      "end": "END",
+      "condition": null
+    },
+    {
+      "start": "START",
+      "end": "triage",
+      "condition": null
+    }
+  ],
+  "agents": [],
+  "tools": [
+    {
+      "node_type": "custom_tool",
+      "name": "lookup_customer",
+      "description": "Look up a customer record.",
+      "label": null,
+      "category": "default",
+      "vulnerabilities": []
+    },
+    {
+      "node_type": "custom_tool",
+      "name": "send_email",
+      "description": "Send an email.",
+      "label": null,
+      "category": "default",
+      "vulnerabilities": []
+    }
+  ]
+}

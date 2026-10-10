@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rainkernel.com/schemas/readiness-kit/agent-manifest.schema.json",
+  "title": "Readiness Kit agent manifest (agent.yaml)",
+  "type": "object",
+  "required": ["name"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": ["string", "number"] },
+    "owner": { "type": "string" },
+    "description": { "type": "string" },
+    "models": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "provider": { "type": "string" }, "version": { "type": ["string", "number"] }, "purpose": { "type": "string" } } }
+    },
+    "prompts": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "version": { "type": ["string", "number"] } }, "anyOf": [{ "required": ["name"] }, { "required": ["path"] }] }
+    },
+    "tools": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "server": { "type": "string" }, "kind": { "type": "string", "enum": ["read", "write", "send", "execute", "other"] }, "version": { "type": ["string", "number"] } } }
+    },
+    "mcp_servers": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "transport": { "type": "string" }, "command": { "type": "string" }, "url": { "type": "string" }, "version": { "type": ["string", "number"] }, "tools": { "type": "array", "items": { "type": "string" } } } }
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "source": { "type": "string" }, "pinned": { "type": "string" }, "version": { "type": ["string", "number"] } }, "anyOf": [{ "required": ["name"] }, { "required": ["path"] }] }
+    },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "kind": { "type": "string" }, "owner": { "type": "string" }, "refresh": { "type": "string" }, "version": { "type": ["string", "number"] }, "access": { "type": "string" } } }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+# What the team declares about the agent. Every answer is scored as "declared" (self-assessed) and shown as such;
+# the Gate verifies these in a real run. Leave a line out if you do not know — an unanswered item scores 0.
+evaluation_set:
+  source: synthetic          # production | mixed | synthetic
+  gated_in_ci: false
+  target_pass_rate: 0.90
+observability:
+  traces: true
+  cost_per_task_recorded: false
+  step_and_tool_alerts: false
+  eval_metrics_tracked: false
+data_access:
+  dedicated_identity: false
+  least_privilege: false
+  credential_rotation_days: 140
+  decommission_runbook: false
+human_in_the_loop:
+  approval_for_irreversible_actions: false
+  escalation_path: true
+  operator_can_halt: true
+compliance:
+  records_retention_defined: false
+  inventory_owner: platform-team@example.com
+cost:
+  ceiling_per_task: 0.01
+  volume_per_month: 50000

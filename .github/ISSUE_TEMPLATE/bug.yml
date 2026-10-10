@@ -1,0 +1,24 @@
+name: Bug
+description: Something the Kit did wrong
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Kit version
+      description: Output of `rk version`
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: The exact command and its output
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true

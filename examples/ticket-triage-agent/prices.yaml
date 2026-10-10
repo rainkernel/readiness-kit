@@ -1,0 +1,15 @@
+# EXAMPLE price table. The figures below are illustrative numbers for the example's pretend models; they are not
+# any provider's list price. Put your providers' current prices here (USD per million tokens) — list prices change,
+# differ by region and tier, and cached input is often cheaper. `rk cost` reports tokens on unpriced models.
+as_of: 2026-10-10
+currency: USD
+models:
+  - match: "demo-large*"
+    input_per_1m: 2.50
+    output_per_1m: 10.00
+  - match: "demo-small*"
+    input_per_1m: 0.15
+    output_per_1m: 0.60
+  - match: "demo-rules*"      # the rule-based example agent: no model behind it, priced at zero so the run adds up
+    input_per_1m: 0.0
+    output_per_1m: 0.0

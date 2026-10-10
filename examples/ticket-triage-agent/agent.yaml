@@ -1,0 +1,51 @@
+# The agent manifest: what the agent is made of, as declared by its owner. `rk bom` turns this (plus what it
+# discovers on disk) into a CycloneDX Agent BOM. Anything without a version is reported as unversioned.
+name: ticket-triage-agent
+version: 0.3.0
+owner: platform-team@example.com
+description: Classifies incoming support tickets, looks the customer up, routes the ticket and drafts a first reply.
+models:
+  - name: demo-large
+    provider: example-hosted
+    version: "2026-06"
+    purpose: classification and reply drafting
+  - name: demo-small
+    provider: example-hosted
+    purpose: field extraction          # no version → unversioned finding
+prompts:
+  - name: system prompt
+    path: prompts/system.md
+    version: v3
+tools:
+  - { name: lookup_customer, server: crm-server, kind: read }
+  - { name: lookup_order, server: crm-server, kind: read }
+  - { name: update_account, server: crm-server, kind: write }
+  - { name: route_ticket, server: internal, kind: write }
+  - { name: send_email, server: internal, kind: send }
+  - { name: escalate_to_human, server: internal, kind: write }
+  - { name: issue_refund, server: internal, kind: write }
+mcp_servers:
+  - name: crm-server
+    transport: stdio
+    command: uvx crm-mcp@1.4.2
+    tools: [lookup_customer, lookup_order, update_account]
+  - name: docs-server
+    transport: stdio
+    command: npx docs-mcp                # no pinned version → unversioned finding
+    tools: [search_docs]
+skills:
+  - name: refund-policy
+    path: skills/refund-policy/SKILL.md  # local file: hashed
+  - name: tone-of-voice
+    source: https://example.com/skills/tone-of-voice   # remote, no pinned hash → finding
+data_sources:
+  - name: policy-wording-index
+    kind: vector-index
+    owner: knowledge-team
+    refresh: weekly
+  - name: customer-records
+    kind: crm
+    owner: crm-team
+    access: read
+  - name: procedures-index
+    kind: vector-index                   # no owner, no refresh → unmanaged

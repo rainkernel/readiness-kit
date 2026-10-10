@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Kit run artefacts (keep the inputs, not the outputs)
+runs/
+rk-demo/
+examples/ticket-triage-agent/split.json
+examples/ticket-triage-agent/runs/
+benchmarks/*/data/
+benchmarks/*/runs/
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

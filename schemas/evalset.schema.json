@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rainkernel.com/schemas/readiness-kit/evalset-case.schema.json",
+  "title": "Readiness Kit evaluation case",
+  "description": "One line of an evaluation set (JSONL) or one item of a YAML list.",
+  "type": "object",
+  "required": ["id", "input"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "input": { "type": "string", "minLength": 1 },
+    "expected": { "description": "What the grader compares against: a string, a list, or an object such as {\"category\": \"REFUND\"}" },
+    "grader": { "type": "string", "enum": ["exact", "contains", "any_of", "not_contains", "regex", "label", "json_field", "number", "tool_called", "tool_not_called"] },
+    "options": { "type": "object" },
+    "category": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "context": { "type": "object" },
+    "metadata": { "type": "object" }
+  }
+}
