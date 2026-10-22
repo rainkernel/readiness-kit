@@ -10,6 +10,12 @@ the ones it can.
 - [ ] The version is the same in three places: `pyproject.toml`, `src/readiness_kit/__init__.py` and the
       `## [x.y.z] - YYYY-MM-DD` heading in `CHANGELOG.md`. The release workflow refuses a tag that disagrees.
 - [ ] `CHANGELOG.md` says what changed, in plain language. Nothing under `[Unreleased]` that belongs in the version.
+- [ ] Every link in README.md is absolute (`https://github.com/rainkernel/readiness-kit/blob/main/...`): PyPI
+      renders the README outside the repository, so a relative link returns 404 there. This grep prints nothing:
+
+      ```
+      grep -n -P '\]\((?!http)' README.md
+      ```
 - [ ] Docs read as the release: README, docs/WALKTHROUGH.md, docs/FORMATS.md, docs/ADAPTERS.md, docs/BENCHMARK.md
       and the example README state the numbers `rk demo` prints today (held-out pass rate, findings, components,
       cost ratio, score).
@@ -59,6 +65,9 @@ the ones it can.
 - A failed job before `publish`: fix on `main`, delete the tag locally and remotely (`git tag -d v0.1.0`,
   `git push origin :refs/tags/v0.1.0`), retag the fixed commit. Nothing reached PyPI, so the version number
   can be reused.
+- A mistake in the README or another file inside the package (even one wrong link): the project page on PyPI is
+  the README that was uploaded and cannot be edited there. Fix on `main`, bump the patch version, add the
+  changelog entry, tag again (v0.1.1 on 22 October 2026 was exactly this).
 - A failure after `publish`: the version is on PyPI and cannot be replaced. Fix on `main`, bump the patch
   version (0.1.1), add a changelog entry that says what was wrong, tag again. Do not delete the PyPI release
   unless it is unusable or unsafe; yank it instead, with the reason.

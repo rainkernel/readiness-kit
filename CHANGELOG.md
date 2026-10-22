@@ -5,6 +5,11 @@ A release exists when its tag exists.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-22
+
+### Fixed
+- The README's links to the walkthrough, the design note, the other docs, SECURITY.md, LICENSE and NOTICE were relative to the repository, so on pypi.org they returned 404; they are absolute now. No code change; the wheel is the same package with the corrected description.
+
 ## [0.1.0] - 2026-10-22
 
 The first release: the frame under the Agent Readiness Gate. Planned for 18 October 2026 and tagged on the 22nd.

@@ -7,7 +7,7 @@ emits a CycloneDX Agent Bill of Materials, computes a cost-per-task baseline fro
 eight-area readiness rubric to all of it. The engine (the full attack pack, the domain packs, the seed sets, the
 Evidence Report generator and the CI gate) ships in the licensed Gate.
 
-**Release: v0.1.0 · 22 October 2026.** Apache-2.0. Python 3.10+.
+**Release: v0.1.1 · 22 October 2026.** Apache-2.0. Python 3.10+.
 
 ```
 pip install readiness-kit
@@ -16,7 +16,7 @@ rk demo
 
 `rk demo` runs the whole pipeline on a bundled, deliberately weak support-ticket agent. It works offline, needs
 no model and no key, and prints a scorecard in about a second. Then `rk init` and point `rk.yaml` at your own
-agent: [the ten-minute walkthrough](docs/WALKTHROUGH.md).
+agent: [the ten-minute walkthrough](https://github.com/rainkernel/readiness-kit/blob/main/docs/WALKTHROUGH.md).
 
 ## What it does
 
@@ -53,7 +53,7 @@ marks *not observable*. Silence is not upgraded to a pass.
 | `src/readiness_kit/adapters/` | The four scanner adapters and the adapter contract |
 | `examples/ticket-triage-agent/` | The demo agent, its 80-case set, traces, manifest, assessment and example price table |
 | `benchmarks/bitext-support/` | The published benchmark: data preparation, configuration, the one command |
-| `docs/` | [DESIGN](docs/DESIGN.md) · [WALKTHROUGH](docs/WALKTHROUGH.md) · [FORMATS](docs/FORMATS.md) · [ADAPTERS](docs/ADAPTERS.md) · [BENCHMARK](docs/BENCHMARK.md) |
+| `docs/` | [DESIGN](https://github.com/rainkernel/readiness-kit/blob/main/docs/DESIGN.md) · [WALKTHROUGH](https://github.com/rainkernel/readiness-kit/blob/main/docs/WALKTHROUGH.md) · [FORMATS](https://github.com/rainkernel/readiness-kit/blob/main/docs/FORMATS.md) · [ADAPTERS](https://github.com/rainkernel/readiness-kit/blob/main/docs/ADAPTERS.md) · [BENCHMARK](https://github.com/rainkernel/readiness-kit/blob/main/docs/BENCHMARK.md) |
 
 A worked example of what the Gate produces from these artefacts, the Evidence Report on a fictional
 claims-triage agent, is at
@@ -66,10 +66,11 @@ and the adapters are public; the full attack pack, the domain packs, the seed se
 CI gate are what a licence buys. **Honest version numbers.** v0.1 means v0.1, and no release is announced before
 it is tagged. **Nothing moves behind a paywall.** What ships in the open tier stays there. **Upstream first.**
 Where an open scanner should have a feature, we contribute it there before wrapping it here. The full note:
-[docs/DESIGN.md](docs/DESIGN.md).
+[docs/DESIGN.md](https://github.com/rainkernel/readiness-kit/blob/main/docs/DESIGN.md).
 
 ## Releases
 
+- **v0.1.1 · 22 October 2026.** The README's links are absolute, so they work on PyPI as well as on GitHub (on PyPI the walkthrough link returned 404). No code change.
 - **v0.1.0 · 22 October 2026** (planned for the 18th, four days late; the date is recorded, not rewritten). The frame above, with the benchmark on a public support-ticket set
   (docs/BENCHMARK.md) and the ten-minute walkthrough.
 - Later releases are announced when they are tagged, here and in the [Lab's log](https://rainkernel.com/lab),
@@ -93,12 +94,12 @@ target you configure and whatever the scanners you install make themselves); sca
 explicit arguments and no shell; secrets are read from environment variables you name in rk.yaml, and a missing
 one stops the run before it starts; attack canaries sit on `.invalid` domains that cannot resolve. Run the
 attack pack against a staging agent with outbound tools stubbed: the cases are real attacks and your agent may
-act on them (docs/WALKTHROUGH.md).
+act on them ([docs/WALKTHROUGH.md](https://github.com/rainkernel/readiness-kit/blob/main/docs/WALKTHROUGH.md)).
 
 Vulnerabilities in this tool: security@rainkernel.com or a private security advisory on this repository. We
-credit reporters. See [SECURITY.md](SECURITY.md) and
+credit reporters. See [SECURITY.md](https://github.com/rainkernel/readiness-kit/blob/main/SECURITY.md) and
 [rainkernel.com/.well-known/security.txt](https://rainkernel.com/.well-known/security.txt).
 
 ## Licence
 
-Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). © 2026 Rainkernel Technologies Private Limited.
+Apache-2.0. See [LICENSE](https://github.com/rainkernel/readiness-kit/blob/main/LICENSE) and [NOTICE](https://github.com/rainkernel/readiness-kit/blob/main/NOTICE). © 2026 Rainkernel Technologies Private Limited.

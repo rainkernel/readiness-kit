@@ -8,5 +8,5 @@ applies the eight-area readiness rubric to all of it. The licensed Gate adds the
 https://rainkernel.com/open-source · Apache-2.0
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["__version__"]

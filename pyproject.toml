@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "readiness-kit"
-version = "0.1.0"
+version = "0.1.1"
 description = "The open-source frame under the Agent Readiness Gate: an evaluation harness with a held-out split, a starter attack pack mapped to OWASP ASI01-ASI10, adapters for the open agent scanners, an eight-area readiness scorecard, a CycloneDX Agent BOM emitter and a cost-per-task baseline."
 readme = "README.md"
 license = "Apache-2.0"
