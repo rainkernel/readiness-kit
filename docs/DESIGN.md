@@ -84,7 +84,7 @@ response ← {"output", "tool_calls": [{"name", "arguments", "result"}], "steps"
 
 Only `output` is required. Five target types implement it: `python` (in-process), `http` (POST), `openai-chat`
 (any OpenAI-compatible endpoint), `command` (stdin/stdout) and `replay` (a transcript file). The more an agent
-reports, the more the Kit can judge; what it does not report is marked not observable, never guessed.
+reports, the more the Kit can judge; what it does not report is marked not observable rather than guessed.
 
 ## 5. The rubric
 

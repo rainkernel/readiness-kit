@@ -95,7 +95,7 @@ rk eval                                          # held-out pass rate, by catego
 rk attack                                        # the starter pack; 'not observable' means your target does not report tool calls or steps yet
 rk bom --discover .                              # fill agent.yaml first: models, prompts, tools, MCP servers, skills, data sources
 rk cost traces.jsonl --ceiling 0.40 --volume 12000   # OTel JSONL / OTLP JSON / Langfuse export; prices.yaml for your models
-rk scan --config-path .mcp.json                  # whichever scanners are installed; the rest are reported as skipped
+rk scan --config-path mcp.json                   # your MCP client config; whichever scanners are installed run, the rest are reported as skipped
 rk score                                         # answer assessment.yaml for the declared items first
 ```
 

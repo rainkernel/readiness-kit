@@ -22,6 +22,8 @@ pip install "readiness-kit[benchmark]"
 
 `run.sh` rebuilds the set, makes the split, runs `rk eval` and prints the held-out pass rate; `runs/eval.json`
 carries the set's sha256, the split's salt and the Kit version, which is what a published number must cite.
+`python chart.py` then draws the result (held-out beside dev, with the citation line) as an SVG under `docs/`,
+from the run file alone.
 
 ## Results
 

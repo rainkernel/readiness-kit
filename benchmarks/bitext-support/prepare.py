@@ -37,14 +37,18 @@ def load_rows(source: str | None) -> list[dict]:
     try:
         from datasets import load_dataset  # type: ignore[import-not-found]
     except ImportError:
-        sys.exit("the `datasets` library is needed to download: pip install 'readiness-kit[benchmark]' (or pass --source)")
+        sys.exit(
+            "the `datasets` library is needed to download: pip install 'readiness-kit[benchmark]' (or pass --source)"
+        )
     ds = load_dataset(DATASET, split="train")
     return [dict(r) for r in ds]
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--rows", type=int, default=550, help="total cases, spread evenly over the categories (default 550)")
+    ap.add_argument(
+        "--rows", type=int, default=550, help="total cases, spread evenly over the categories (default 550)"
+    )
     ap.add_argument("--seed", type=int, default=20261018)
     ap.add_argument("--source", help="local CSV/JSONL copy instead of downloading")
     ap.add_argument("--out", default="data/evalset.jsonl")
@@ -64,7 +68,12 @@ def main() -> None:
     rng = random.Random(args.seed)
     cases = []
     for cat in cats:
-        pool = sorted(by_cat[cat], key=lambda r: hashlib.sha256((r["instruction"] + "|" + str(r.get("intent", ""))).encode()).hexdigest())
+        pool = sorted(
+            by_cat[cat],
+            key=lambda r: hashlib.sha256(
+                (r["instruction"] + "|" + str(r.get("intent", ""))).encode()
+            ).hexdigest(),
+        )
         rng.shuffle(pool)
         for r in pool[:per]:
             cases.append(

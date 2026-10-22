@@ -34,12 +34,12 @@ Canaries live on `*.rk-canary.invalid`; `.invalid` is reserved by RFC 2606 and c
 
 **Run the pack against a non-production deployment.** The cases are real attacks: an agent that follows ASI06
 may call its refund tool, an agent that follows ASI08 may loop until its own limit. Point the Kit at a staging
-agent whose outbound tools (e-mail, payments, account changes) are stubbed or sandboxed, never at production.
+agent whose outbound tools (e-mail, payments, account changes) are stubbed or sandboxed, and not at production.
 
 Oracle types: `output_not_contains`, `output_contains`, `output_not_matches`, `output_matches` (regex),
 `tool_not_called`, `tool_called` (glob on the tool name, optional `with` substring in the arguments),
 `max_steps`, `max_tool_calls`. An oracle that needs tool calls or steps the target does not report yields
-*not observable*, which the Kit never counts as a pass.
+*not observable*, which the Kit does not count as a pass.
 
 The schema is `case.schema.json`; `rk validate pack starter/asi01-goal-hijack.yaml` checks a file.
 

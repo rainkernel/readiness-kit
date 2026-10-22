@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import argparse
 import contextlib
-import shutil
 import sys
 from pathlib import Path
 from typing import Any
@@ -67,12 +66,19 @@ def cmd_init(args: argparse.Namespace) -> int:
     target.mkdir(parents=True, exist_ok=True)
     src = example_path()
     written = []
+    project = target.name or "my-agent"
     for name in ("rk.yaml", "agent.yaml", "assessment.yaml", "prices.yaml"):
         dst = target / name
         if dst.exists() and not args.force:
             say(f"keep   {dst} (exists; --force to overwrite)")
             continue
-        shutil.copyfile(src / name, dst)
+        text = (src / name).read_text(encoding="utf-8")
+        # the templates are the example's files with the example's identity replaced by this project's
+        text = text.replace("ticket-triage-agent", project).replace(
+            "Readiness Kit configuration for the example agent. Copy this next to your own agent and change `target`.",
+            "Readiness Kit configuration for this agent. Set `target` to the agent, then run the commands in order.",
+        )
+        dst.write_text(text, encoding="utf-8")
         written.append(dst)
         say(f"wrote  {dst}")
     say("")
@@ -179,7 +185,8 @@ def cmd_attack(args: argparse.Namespace) -> int:
     cases = load_pack(pack_path)
     target = _target(cfg)
     only = [x.strip() for x in args.only.split(",")] if args.only else None
-    say(f"attack {len(cases)} cases from {pack_path} → target '{cfg.target.get('type')}'")
+    pack_label = "the bundled starter pack" if pack_arg == "starter" else str(pack_path)
+    say(f"attack {len(cases)} cases from {pack_label} → target '{cfg.target.get('type')}'")
     result = run_attacks(target, cases, pack_path=str(pack_path), max_steps=cfg.max_steps, only=only)
     out = _runs(cfg, args) / "attack.json"
     write_json(out, result.to_dict())
@@ -211,14 +218,24 @@ def cmd_scan(args: argparse.Namespace) -> int:
         for t in (args.tools or ",".join(cfg.scan.get("tools") or list(ADAPTERS))).split(",")
         if t.strip()
     ]
+    config_path = cfg.resolve(args.config_path or cfg.scan.get("config_path"))
+    tools_json = cfg.resolve(args.tools_json or cfg.scan.get("tools_json"))
+    promptfoo_config = cfg.resolve(args.promptfoo_config or cfg.scan.get("promptfoo_config"))
+    for flag, value in (
+        ("--config-path", config_path),
+        ("--tools-json", tools_json),
+        ("--promptfoo-config", promptfoo_config),
+    ):
+        if value is not None and not Path(value).exists():
+            raise KitError(f"{flag} {value}: no such file")
     ctx = ScanContext(
         path=path,
         out_dir=runs / "scan",
-        config_path=cfg.resolve(args.config_path or cfg.scan.get("config_path")),
-        tools_json=cfg.resolve(args.tools_json or cfg.scan.get("tools_json")),
+        config_path=config_path,
+        tools_json=tools_json,
         server_url=args.server_url or cfg.scan.get("server_url"),
         framework=args.framework or cfg.scan.get("framework"),
-        promptfoo_config=cfg.resolve(args.promptfoo_config or cfg.scan.get("promptfoo_config")),
+        promptfoo_config=promptfoo_config,
         timeout=int(args.timeout),
     )
     say(f"scan   {path} with {', '.join(tools)}")
@@ -505,6 +522,10 @@ def main(argv: list[str] | None = None) -> int:
     except KeyboardInterrupt:
         say("rk: interrupted")
         return 130
+    except BrokenPipeError:  # output piped into `head` and the reader closed first
+        with contextlib.suppress(OSError):
+            sys.stdout.close()
+        return EXIT_OK
 
 
 def _entry() -> None:

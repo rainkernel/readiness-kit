@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">Readiness Kit benchmark: held-out pass rate 0.35 against dev pass rate 0.44</title>
+<desc id="d">Two bars. Held-out 63 of 178 cases passed (0.35); dev 163 of 372 (0.44). The same agent, the same set, the same grader. The gap is the point.</desc>
+<rect width="1200" height="675" fill="#FFFFFF"/>
+<text x="60" y="64" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="#0B1F3B">The same agent, measured twice</text>
+<text x="60" y="100" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="400" fill="#4B5563">Readiness Kit 0.1.0 · Bitext customer-support set, 550 cases · bitext-support-benchmark</text>
+<text x="1140" y="64" text-anchor="end" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#0B1F3B">github.com/rainkernel/readiness-kit</text>
+<line x1="140" y1="520.0" x2="700" y2="520.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="526.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">0.0</text>
+<line x1="140" y1="446.0" x2="700" y2="446.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="452.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">0.2</text>
+<line x1="140" y1="372.0" x2="700" y2="372.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="378.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">0.4</text>
+<line x1="140" y1="298.0" x2="700" y2="298.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="304.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">0.6</text>
+<line x1="140" y1="224.0" x2="700" y2="224.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="230.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">0.8</text>
+<line x1="140" y1="150.0" x2="700" y2="150.0" stroke="#D9DEE7" stroke-width="1"/>
+<text x="126" y="156.0" text-anchor="end" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4B5563">1.0</text>
+<rect x="200" y="389.1" width="170" height="130.9" rx="6" fill="#0B1F3B"/>
+<text x="285.0" y="373.1" text-anchor="middle" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#0B1F3B">0.35</text>
+<text x="285.0" y="554" text-anchor="middle" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#0B1F3B">Held-out</text>
+<text x="285.0" y="580" text-anchor="middle" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">63 of 178 cases</text>
+<rect x="480" y="357.9" width="170" height="162.1" rx="6" fill="#E8A33D"/>
+<text x="565.0" y="341.9" text-anchor="middle" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#0B1F3B">0.44</text>
+<text x="565.0" y="554" text-anchor="middle" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#0B1F3B">Dev</text>
+<text x="565.0" y="580" text-anchor="middle" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">163 of 372 cases</text>
+<text x="770" y="190" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#0B1F3B">Why two numbers</text>
+<text x="770" y="228" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="18" fill="#0B1F3B"><tspan font-weight="700">Held-out:</tspan> the headline number: cases</text>
+<text x="770" y="254" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="400" fill="#0B1F3B">the agent was not tuned on</text>
+<text x="770" y="290" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="18" fill="#0B1F3B"><tspan font-weight="700">Dev:</tspan> what most teams publish;</text>
+<text x="770" y="316" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="400" fill="#0B1F3B">always the kinder number</text>
+<text x="770" y="358" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">Split: sha256(salt + ":" + id) &lt; 0.33,</text>
+<text x="770" y="384" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">salt recorded in the run, so anyone with</text>
+<text x="770" y="410" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">the salt reproduces the held-out number.</text>
+<text x="770" y="462" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">The example agent is a floor (eleven keyword</text>
+<text x="770" y="488" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">rules, no model). It is published because it</text>
+<text x="770" y="514" text-anchor="start" font-family="Manrope, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="400" fill="#4B5563">can be checked, not because it is good.</text>
+<line x1="60" y1="605" x2="1140" y2="605" stroke="#D9DEE7"/>
+<text x="60" y="635" text-anchor="start" font-family="'IBM Plex Mono', Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4B5563">set sha256 b1ef757821c83cdb… · salt bitext-support-v0.1 · run 2026-10-10 · reproduce: benchmarks/bitext-support/run.sh</text>
+</svg>

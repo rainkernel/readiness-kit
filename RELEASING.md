@@ -15,7 +15,9 @@ the ones it can.
       cost ratio, score).
 - [ ] `benchmarks/bitext-support/run.sh` has been run on tag day and its held-out pass rate, counts and set
       sha256 match the current row in docs/BENCHMARK.md. If the sha256 differs, the upstream data set changed:
-      add a new row with the new figures and say so under the table; do not edit the old row.
+      add a new row with the new figures and say so under the table; do not edit the old row. Then
+      `python benchmarks/bitext-support/chart.py` regenerates `docs/benchmark-<version>.svg` from the run; commit it
+      if it changed.
 - [ ] Someone who did not write the Kit has done docs/WALKTHROUGH.md on a fresh machine and every point where
       they hesitated has been fixed or written down as an issue.
 - [ ] A fresh checkout passes `pip install -e ".[dev]" && pytest -q && ruff check src tests examples`.

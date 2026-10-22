@@ -7,7 +7,7 @@ emits a CycloneDX Agent Bill of Materials, computes a cost-per-task baseline fro
 eight-area readiness rubric to all of it. The engine (the full attack pack, the domain packs, the seed sets, the
 Evidence Report generator and the CI gate) ships in the licensed Gate.
 
-**Release: v0.1.0 · 18 October 2026.** Apache-2.0. Python 3.10+.
+**Release: v0.1.0 · 22 October 2026.** Apache-2.0. Python 3.10+.
 
 ```
 pip install readiness-kit
@@ -70,7 +70,7 @@ Where an open scanner should have a feature, we contribute it there before wrapp
 
 ## Releases
 
-- **v0.1.0 · 18 October 2026.** The frame above, with the benchmark on a public support-ticket set
+- **v0.1.0 · 22 October 2026** (planned for the 18th, four days late; the date is recorded, not rewritten). The frame above, with the benchmark on a public support-ticket set
   (docs/BENCHMARK.md) and the ten-minute walkthrough.
 - Later releases are announced when they are tagged, here and in the [Lab's log](https://rainkernel.com/lab),
   and not before. CHANGELOG.md has the detail.

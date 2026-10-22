@@ -43,6 +43,14 @@ published because anyone can reproduce it exactly in under a minute, which is wh
 model-backed target through the same command gives a number that depends on the model and the prompt, which is
 why the Kit records both.
 
+## The chart
+
+![Held-out pass rate 0.35 beside dev pass rate 0.44 for the same agent on the same set](benchmark-0.1.0.svg)
+
+`benchmarks/bitext-support/chart.py` draws it from `runs/eval.json` with the standard library only, so the
+picture is as reproducible as the number: the same run file gives the same SVG. It is regenerated on tag day
+after `run.sh`, and a new row in the table gets a new chart file named after the Kit version.
+
 ## Reproducing
 
 ```
